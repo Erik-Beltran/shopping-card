@@ -1,0 +1,13 @@
+.shoppingCart {
+  width: 30%;
+  border: 2px solid green;
+}
+table{
+    border:1px solid gray
+}
+.btn-danger {
+  padding: 0.20em;
+}
+.table i {
+  font-size: 20px;
+}
