@@ -1,0 +1,7 @@
+{ 
+    "products":[
+    {
+        "id": "1", "nombre": "Adidas 1010", "talla": ["L", "M"], "precio":20.000, "dispobile": true, "img": "https://i.pinimg.com/originals/69/54/74/6954748f14dbac37d956822764a4e7d9.jpg"
+    }
+]
+}

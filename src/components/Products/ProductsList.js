@@ -1,22 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import datos from '../../helpers/data'
-import store from '../../redux/store'
 import './productsList.css'
 import {addToCart} from '../../redux/actions/actions'
+import { connect } from 'react-redux'
 
-class ProductsList extends Component {
-    constructor() {
-        super();
-        this.state = {
-            productos: datos
-        }
-        this.addToCard = this.addToCard.bind(this)
-    }
-
-
-    render() {
-        const { productos } = this.state
-        console.log(productos)
+const ProductsList =({addToCart})=> {
+    const productos= datos
         return (
             <div className="productsList">
                 {
@@ -27,7 +16,7 @@ class ProductsList extends Component {
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                onClick={() => this.addToCard(producto)}>
+                                onClick={() => addToCart(producto)}>
                                 {`$ ${producto.precio}`}
                                 <i class="fas fa-cart-arrow-down"></i>
 
@@ -39,8 +28,12 @@ class ProductsList extends Component {
         )
     }
 
-    addToCard(product) {
-        store.dispatch(addToCart(product))
+
+const mapDispacthToProps = dispatch => {
+    return {
+        addToCart(product) {
+            dispatch(addToCart(product))
+        }
     }
 }
-export default ProductsList;
+export default  connect(null, mapDispacthToProps) (ProductsList);

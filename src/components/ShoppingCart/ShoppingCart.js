@@ -1,28 +1,9 @@
-import React, { Component } from 'react'
-import store from '../../redux/store';
+import React from 'react'
 import './shoppingCart.css'
 import { removeFromCart } from '../../redux/actions/actions'
+import { connect } from 'react-redux';
 
-
-class ShoppingCart extends Component {
-    constructor() {
-        super();
-        this.state = {
-            cart: []
-        }
-
-        store.subscribe(() => {
-            this.setState({
-                cart: store.getState().cart
-            })
-        })
-
-        this.removeFromCart = this.removeFromCart.bind(this)
-    }
-
-    render() {
-
-        console.log(this.state.cart)
+const ShoppingCart =({cart, removeFromCart})=>  {        
         return (
             <div className="shoppingCart">
                 <table class="table table-striped">
@@ -33,7 +14,7 @@ class ShoppingCart extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.cart.map(product => (
+                            cart.map(product => (
                                 <tr>
                                     <td>{product.nombre}</td>
                                     <td>{`$ ${product.precio}`}</td>
@@ -41,7 +22,7 @@ class ShoppingCart extends Component {
                                         <button
                                             type="button"
                                             class="btn btn-danger"
-                                            onClick={() => this.removeFromCart(product)}>
+                                            onClick={() => removeFromCart(product)}>
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -53,7 +34,7 @@ class ShoppingCart extends Component {
                         <tr>
                             <td colSpan="3">
                                 <strong>
-                                    Total: ${this.state.cart.reduce((sum, product) => sum + Number(product.precio), 0)}
+                                    Total: ${cart.reduce((sum, product) => sum + Number(product.precio), 0)}
                                 </strong>
                             </td>
                         </tr>
@@ -63,9 +44,17 @@ class ShoppingCart extends Component {
         )
     }
 
-    removeFromCart(product) {
-        store.dispatch(removeFromCart(product))
+const mapStateToProps = state => {
+    return {
+        cart: state.cart
     }
 }
 
-export default ShoppingCart;
+const mapDispacthToProps = dispatch => {
+    return {
+        removeFromCart(product) {
+            dispatch(removeFromCart(product))
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispacthToProps)(ShoppingCart);

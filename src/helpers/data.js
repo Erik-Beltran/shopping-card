@@ -76,7 +76,7 @@ const prendas = [{
     talla: [],
     precio: 10.000,
     dispobile: true,
-    img: "https://lh3.googleusercontent.com/proxy/8TiDa5QFux6lIEeqTgmSvdpj_001fqp1CRlM10uJkxEkbF_hAzBhVc-aGugVySoZIl3rJC817atDpP18EfvLCfBvJST6aa6kCuPVYb1wF6EyuCI4"
+    img: "https://i1.wp.com/www.muchasmascosicas.es/wp-content/uploads/2019/06/camiseta-pikachu-supreme.-muchasmascosicas.jpg?fit=900%2C1173&ssl=1"
 },
 {
     id: "11",
